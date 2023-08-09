@@ -16,3 +16,12 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+      - name: last_name
+        tests:
+          - not_null:
+              config:
+                severity: warn
+              meta:
+                owner:
+                  - ofek@elementary-data.com
+                description: The LAST_NAME column in the dim_customers table should not contain null values
