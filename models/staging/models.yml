@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_customers
+    config:
+      tags:
+        - critical-tag
+    description: Customers.
+    columns: 
+      - name: customer_id
+        description: ID of customer.
+        tests:
+          - unique
+          - not_null
+      - name: last_name || last_name
+        description: Full name of customer.
+        tests:
+          - failing_test:
+              config:
+                store_failures: true
+          - not_null
+
+  - name: stg_orders
+    description: Orders.
+    columns:
+      - name: order_id
+        description: ID of order.
+        tests:
+          - unique
+          - not_null
+      - name: "order_id::text || customer_id::text"
+        description: ID of order and customer.
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - accepted_values:
+              values:
+                - completed
+                - shipped
+                - returned
+                - return_pending
+                - placed
