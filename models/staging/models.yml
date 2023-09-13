@@ -37,9 +37,14 @@ models:
         description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
+              name: pipikaka
               values:
                 - completed
                 - shipped
                 - returned
                 - return_pending
-                - placed
+                - pending
+  - name: int_orders__pivoted
+    tests:
+      - unique:
+          column_name: order_id
