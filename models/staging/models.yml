@@ -6,7 +6,7 @@ models:
       tags:
         - critical-tag
     description: Customers.
-    columns: 
+    columns:
       - name: customer_id
         description: ID of customer.
         tests:
@@ -44,7 +44,3 @@ models:
                 - returned
                 - return_pending
                 - pending
-  - name: int_orders__pivoted
-    tests:
-      - unique:
-          column_name: order_id
