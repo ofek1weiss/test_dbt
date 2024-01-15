@@ -29,3 +29,42 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+  - name: test_table
+    tests:
+      - elementary.freshness_anomalies:
+          timestamp_column: data
+          days_back: 14
+          backfill_days: 2
+          time_bucket:
+            period: day
+            count: 1
+  - name: dimension
+    tests:
+      - elementary.dimension_anomalies:
+          timestamp_column: date
+          dimensions:
+            - client
+          training_period:
+            period: day
+            count: 14
+          detection_period:
+            period: day
+            count: 2
+          time_bucket:
+            period: day
+            count: 1
+  - name: dimension_error
+    tests:
+      - elementary.dimension_anomalies:
+          timestamp_column: date
+          dimensions:
+            - client
+          training_period:
+            period: day
+            count: 14
+          detection_period:
+            period: day
+            count: 2
+          time_bucket:
+            period: day
+            count: 1

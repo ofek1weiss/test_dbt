@@ -42,4 +42,6 @@ models:
     ## elementary models will be created in the schema '<your_schema>_elementary'
     +schema: "elementary"
 
+vars:
+  debug_logs: True
 #
