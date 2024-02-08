@@ -16,9 +16,16 @@ models:
         description: Full name of customer.
         tests:
           - failing_test:
+              tags: [blabla]
               config:
                 store_failures: true
           - not_null
+  - name: stg_payments
+    description: Payments.
+    config:
+      tags:
+        - critical-tag2
+      owner: data-team
 
   - name: stg_orders
     description: Orders.

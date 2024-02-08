@@ -56,6 +56,7 @@ models:
   - name: dimension_error
     tests:
       - elementary.dimension_anomalies:
+          severity: warn
           timestamp_column: date
           dimensions:
             - client

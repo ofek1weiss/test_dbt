@@ -1,31 +1,11 @@
 {% macro dbg() %}
-  {% do print("generate_surrogate_key") %}
-  {% do print(elementary.generate_surrogate_key(['field'])) %}
-  {% if dbt.hash %}
-    {% do print("dbt.hash") %}
-    {% do print(dbt.hash("a")) %}
+  {% set rel = ref('elementary', 'dbt_invocations') %}
+  {% do print(rel) %}
+  {% set existing_rel = load_relation(rel) %}
+  {% do print(existing_rel) %}
+  {% if existing_rel != none %}
+    {% do print(existing_rel.is_view) %}
   {% else %}
-    {% do print("no dbt.hash")%}
-  {% endif %}
-  {% if dbt_utils.hash %}
-    {% do print("dbt_utils.hash") %}
-    {% do print(dbt_utils.hash("a")) %}
-  {% else %}
-    {% do print("no dbt_utils.hash")%}
-  {% endif %}
-  {% if dbt.concat %}
-    {% do print("dbt.concat:" ) %}
-    {% do print(dbt.concat(["a", "b"])) %}
-  {% else %}
-    {% do print("no dbt.concat")%}
-  {% endif %}
-  {% if dbt_utils.concat %}
-    {% do print("dbt_utils.concat") %}
-    {% do print(dbt_utils.concat(["a", "b"])) %}
-  {% else %}
-    {% do print("no dbt_utils.concat")%}
+    {% do print('no relation') %}
   {% endif %}
 {% endmacro %}
-
-
-
