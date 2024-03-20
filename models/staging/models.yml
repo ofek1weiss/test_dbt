@@ -44,6 +44,8 @@ models:
         description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
+              meta:
+                description: "test *mark* **down** <https://www.getdbt.com/|line>"
               name: pipikaka
               values:
                 - completed
