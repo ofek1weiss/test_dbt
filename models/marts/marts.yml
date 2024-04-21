@@ -19,7 +19,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -29,6 +30,44 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+      - name: first_name
+        tests:
+          - test_one:
+              val: 1
+              config:
+                tags: &id001
+                  - critical-tag2
+                  - blabla
+              meta:
+                owner: &id002
+                  - ofek@elementary-data.com
+                description: meeeeeeee
+          - test_two:
+              val: 2
+              config:
+                tags: *id001
+              meta:
+                owner: *id002
+                description: meeeeeeee
+      - name: last_name
+        tests:
+          - test_one:
+              val: 1
+              config:
+                tags: &id003
+                  - critical-tag2
+                  - blabla
+              meta:
+                owner: &id004
+                  - ofek@elementary-data.com
+                description: meeeeeeee
+          - test_two:
+              val: 2
+              config:
+                tags: *id003
+              meta:
+                owner: *id004
+                description: meeeeeeee
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
