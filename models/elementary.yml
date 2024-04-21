@@ -1,0 +1,31 @@
+version: 2
+models:
+  - name: all_dates
+    columns:
+      - name: date_day
+        tests:
+          - elementary.freshness_anomalies:
+  # config:
+  #   fail_calc: <string>
+  #   limit: <integer>
+  #   severity: error | warn
+  #   error_if: <string>
+  #   warn_if: <string>
+  #   store_failure: true | false
+  #   where: <string>
+              date_column: 'date'
+              sub1: # hellooooo
+                a: 0
+    # sub newline
+                b: '' #sub hello
+              sub2:
+                a: 0
+                b: ''
+              config:
+                tags:
+                  - blabla
+                  - critical-tag2
+              meta:
+                owner:
+                  - ofek@elementary-data.com
+                description: this is my awesome test
