@@ -19,7 +19,18 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
+      - elementary.schema_changes:
+          config:
+            tags:
+              - critical-tag
+              - critical-tag2
+            severity: error
+          meta:
+            owner:
+              - ofek@elementary-data.com
+            description: Checks for schema changes against an existing baseline
   - name: dim_customers
     columns:
       - name: customer_id
