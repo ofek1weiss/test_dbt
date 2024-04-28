@@ -7,6 +7,52 @@ models:
         tests:
           - average_dollars_spent_greater_than_one:
               group_by_column: customer_id
+      - name: order_id
+        tests:
+          - elementary.column_anomalies:
+              column_anomalies: # Optional, A list of column monitors for anomaly detection. by default all monitors except for `sum` are executed.
+                - null_count
+                - null_percent
+                - min_length
+                - max_length
+                - average_length
+                - missing_count
+                - missing_percent
+                - min
+                - max
+                - average
+                - zero_count
+                - zero_percent
+                - standard_deviation
+                - variance
+              timestamp_column: created_at # Optional, The timestamp column to use in order to split the data into time buckets.
+              where_expression: id is not null # Optional, SQL expression to filter the data.
+              anomaly_sensitivity: 3 # Optional, The sensitivity level for anomaly detection.
+              anomaly_direction: both # Optional, The direction of anomalies to detect.
+              detection_period: # Optional, The period for anomaly detection.
+                period: day # Optional
+                count: 2 # Optional
+              training_period: # Optional, The period for model training.
+                period: day
+                count: 14
+              time_bucket: # Optional, The period for time bucketing.
+                period: day
+                count: 1
+              seasonality: day_of_week # Optional, The seasonality of the data (omit for no seasonality).
+              detection_delay: # Optional, The period for detection delay.
+                period: day
+                count: 0
+              ignore_small_changes: # Optional
+                spike_failure_percent_threshold: 0 # Optional, Threshold for spike anomaly failure.
+                drop_failure_percent_threshold: 0 # Optional, Threshold for drop anomaly failure.
+              anomaly_exclude_metrics: metric_date != '2021-01-01' # Optional, SQL where expression on fields metric_date / metric_time_bucket / metric_value
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
+                description: desc
     tests:
       - elementary.volume_anomalies:
           time_bucket:
@@ -19,7 +65,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
