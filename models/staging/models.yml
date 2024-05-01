@@ -6,7 +6,7 @@ models:
       tags:
         - critical-tag
     description: Customers.
-    columns: 
+    columns:
       - name: customer_id
         description: ID of customer.
         tests:
@@ -57,3 +57,15 @@ models:
     tests:
       - unique:
           column_name: order_id
+      - dbt_utils.recency:
+          datepart: day
+          field: created_at
+          interval: 1
+
+          config:
+            tags:
+              - elementary-tests
+          meta:
+            owner:
+              - ofek@elementary-data.com
+            description: The data in the table should be updated at least up to yesterday
