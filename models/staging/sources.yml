@@ -6,11 +6,46 @@ sources:
     schema: "{{target.schema}}"
     tables:
       - name: customers
+        columns:
+          - name: id
+            tests:
+              - unique:
+                  config:
+                    tags:
+                      - critical-tag
+                    severity: error
+                  meta:
+                    owner:
+                      - or@ofek.com
+                    description: The column should contain only unique values
       - name: orders
         loaded_at_field: '"ORDER_DATE"::timestamp'
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: id
+            tests:
+              - unique:
+                  config:
+                    tags:
+                      - critical-tag
+                    severity: error
+                  meta:
+                    owner:
+                      - or@ofek.com
+                    description: The column should contain only unique values
+          - name: user_id
+            tests:
+              - unique:
+                  config:
+                    tags:
+                      - critical-tag
+                    severity: error
+                  meta:
+                    owner:
+                      - or@ofek.com
+                    description: The column should contain only unique values
   - name: stripe
     database: "{{target.database}}"
     schema: "{{target.schema}}"
@@ -20,3 +55,26 @@ sources:
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: orderid
+            tests:
+              - unique:
+                  config:
+                    tags:
+                      - critical-tag
+                    severity: error
+                  meta:
+                    owner:
+                      - or@ofek.com
+                    description: The column should contain only unique values
+          - name: id
+            tests:
+              - unique:
+                  config:
+                    tags:
+                      - critical-tag
+                    severity: error
+                  meta:
+                    owner:
+                      - or@ofek.com
+                    description: The column should contain only unique values

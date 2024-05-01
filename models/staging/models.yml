@@ -12,6 +12,15 @@ models:
         tests:
           - unique
           - not_null
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
       - name: last_name || last_name
         description: Full name of customer.
         tests:
@@ -27,6 +36,29 @@ models:
         - critical-tag2
       owner: data-team
 
+    columns:
+      - name: order_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
+      - name: payment_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
   - name: stg_orders
     description: Orders.
     columns:
@@ -35,6 +67,15 @@ models:
         tests:
           - unique
           - not_null
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
       - name: "order_id::text || customer_id::text"
         description: ID of order and customer.
         tests:
@@ -53,6 +94,17 @@ models:
                 - returned
                 - return_pending
                 - pending
+      - name: customer_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
   - name: int_orders__pivoted
     tests:
       - unique:
@@ -69,3 +121,15 @@ models:
             owner:
               - ofek@elementary-data.com
             description: The data in the table should be updated at least up to yesterday
+    columns:
+      - name: order_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
