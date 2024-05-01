@@ -20,6 +20,23 @@ models:
               config:
                 store_failures: true
           - not_null
+    tests:
+      - elementary.freshness_anomalies: # comment
+          date_column: 'date'
+          sub1: # comment
+            a: 0
+            b: ''
+          sub2:
+            a: 0
+            b: ''
+          config:
+            tags:
+              - blabla
+              - critical-tag2
+          meta:
+            owner:
+              - ofek@elementary-data.com
+            description: desc
   - name: stg_payments
     description: Payments.
     config:
