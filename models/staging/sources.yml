@@ -11,6 +11,20 @@ sources:
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: order_date
+            tests:
+              - elementary.column_anomalies:
+                  column_anomalies: # Optional, A list of column monitors for anomaly detection. by default all monitors except for `sum` are executed.
+                    - null_count
+                    - null_percent
+                  timestamp_column: created_at # Optional, The timestamp column to use in order to split the data into time buckets.
+                  config:
+                    tags:
+                      - blabla
+                  meta:
+                    owner:
+                      - ofek@elementary-data.com
   - name: stripe
     database: "{{target.database}}"
     schema: "{{target.schema}}"
