@@ -11,6 +11,17 @@ sources:
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
+        columns:
+          - name: order_date
+            tests:
+              - dbt_utils.not_empty_string:
+                  trim_whitespace: true # Optional
+                  config:
+                    tags:
+                      - blabla
+                  meta:
+                    owner:
+                      - ofek@elementary-data.com
   - name: stripe
     database: "{{target.database}}"
     schema: "{{target.schema}}"

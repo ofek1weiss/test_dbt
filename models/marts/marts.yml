@@ -7,6 +7,16 @@ models:
         tests:
           - average_dollars_spent_greater_than_one:
               group_by_column: customer_id
+      - name: order_date
+        tests:
+          - dbt_utils.not_empty_string:
+              trim_whitespace: true # Optional
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
     tests:
       - elementary.volume_anomalies:
           time_bucket:
@@ -19,7 +29,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -29,6 +40,26 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+      - name: first_order_date
+        tests:
+          - dbt_utils.not_empty_string:
+              trim_whitespace: true # Optional
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
+      - name: most_recent_order_date
+        tests:
+          - dbt_utils.not_empty_string:
+              trim_whitespace: true # Optional
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
