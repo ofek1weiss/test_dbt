@@ -27,6 +27,13 @@ models:
         - critical-tag2
       owner: data-team
 
+    tests:
+      - dbt_utils.recency:
+          datepart: day
+          field: created_at
+          interval: 1
+          meta:
+            description: The data is updated up to yesterday
   - name: stg_orders
     description: Orders.
     columns:
