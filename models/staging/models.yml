@@ -27,6 +27,17 @@ models:
         - critical-tag2
       owner: data-team
 
+    columns:
+      - name: created_date
+        tests:
+          - dbt_utils.not_empty_string:
+              trim_whitespace: true # Optional
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
   - name: stg_orders
     description: Orders.
     columns:
@@ -53,6 +64,16 @@ models:
                 - returned
                 - return_pending
                 - pending
+      - name: order_date
+        tests:
+          - dbt_utils.not_empty_string:
+              trim_whitespace: true # Optional
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
   - name: int_orders__pivoted
     tests:
       - unique:
