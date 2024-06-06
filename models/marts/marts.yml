@@ -19,7 +19,21 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('other_table_name')
+          config:
+            tags:
+              - blabla
+              - critical-tag2
+              - critical-tag
+              - asdfasdfsf
+              - blablablabla
+          meta:
+            owner:
+              - data-team
+            description: me
   - name: dim_customers
     columns:
       - name: customer_id
