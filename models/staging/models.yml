@@ -27,6 +27,20 @@ models:
         - critical-tag2
       owner: data-team
 
+    columns:
+      - name: created_date
+        tests:
+          - elementary.column_anomalies:
+              column_anomalies: # Optional, A list of column monitors for anomaly detection. by default all monitors except for `sum` are executed.
+                - null_count
+                - null_percent
+              timestamp_column: created_at # Optional, The timestamp column to use in order to split the data into time buckets.
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
   - name: stg_orders
     description: Orders.
     columns:
@@ -53,6 +67,19 @@ models:
                 - returned
                 - return_pending
                 - pending
+      - name: order_date
+        tests:
+          - elementary.column_anomalies:
+              column_anomalies: # Optional, A list of column monitors for anomaly detection. by default all monitors except for `sum` are executed.
+                - null_count
+                - null_percent
+              timestamp_column: created_at # Optional, The timestamp column to use in order to split the data into time buckets.
+              config:
+                tags:
+                  - blabla
+              meta:
+                owner:
+                  - ofek@elementary-data.com
   - name: int_orders__pivoted
     tests:
       - unique:
