@@ -7,6 +7,28 @@ models:
         tests:
           - average_dollars_spent_greater_than_one:
               group_by_column: customer_id
+      - name: order_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
+      - name: customer_id
+        tests:
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
     tests:
       - elementary.volume_anomalies:
           time_bucket:
@@ -19,7 +41,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -29,6 +52,15 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+          - unique:
+              config:
+                tags:
+                  - critical-tag
+                severity: error
+              meta:
+                owner:
+                  - or@ofek.com
+                description: The column should contain only unique values
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
