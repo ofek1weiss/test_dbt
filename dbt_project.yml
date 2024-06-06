@@ -44,4 +44,6 @@ models:
 
 vars:
   debug_logs: True
-#
+
+flags:
+  source_freshness_run_project_hooks: true
