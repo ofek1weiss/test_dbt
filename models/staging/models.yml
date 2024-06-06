@@ -20,6 +20,18 @@ models:
               config:
                 store_failures: true
           - not_null
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 100 # Optional
+          max_value: 1000 # Optional
+
+          config:
+            tags:
+              - elementary-tests
+          meta:
+            owner:
+              - ofek@elementary-data.com
+            description: The table size it between 100 and 1000
   - name: stg_payments
     description: Payments.
     config:
@@ -27,6 +39,18 @@ models:
         - critical-tag2
       owner: data-team
 
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 100 # Optional
+          max_value: 1000 # Optional
+
+          config:
+            tags:
+              - elementary-tests
+          meta:
+            owner:
+              - ofek@elementary-data.com
+            description: The table size it between 100 and 1000
   - name: stg_orders
     description: Orders.
     columns:
