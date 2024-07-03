@@ -20,6 +20,21 @@ models:
             severity: error
           meta:
             description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+      - elementary.volume_anomalies:
+          time_bucket:
+            period: day
+            count: 1
+          detection_delay:
+            period: day
+            count: 2
+          sensitivity: 3
+          days_back: 14
+          backfill_days: 2
+          timestamp_column: order_date
+          config:
+            severity: error
+          meta:
+            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
