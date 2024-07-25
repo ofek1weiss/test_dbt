@@ -10,7 +10,8 @@ models:
       - name: customer_id
         description: ID of customer.
         tests:
-          - unique
+          - unique:
+              name: blablablablabla
           - not_null
       - name: last_name || last_name
         description: Full name of customer.
