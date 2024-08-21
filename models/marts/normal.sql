@@ -1,0 +1,1 @@
+select date_day, 1 as value from {{ ref('all_dates') }}

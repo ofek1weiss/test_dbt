@@ -1,6 +1,29 @@
 version: 2
 
 models:
+  - name: normal
+    meta:
+      owner: "ofek,weiss"
+    columns:
+      - name: value
+        tests:
+          - elementary.column_anomalies:
+              column_anomalies:
+                - max
+                - min
+              timestamp_column: "date_day"
+              training_period:
+                period: month
+                count: 1
+              time_bucket:
+                period: hour
+                count: 12
+              detection_delay:
+                period: hour
+                count: 12
+              ignore_small_changes:
+                spike_failure_percent_threshold: 10
+
   - name: fct_orders
     columns:
       - name: amount

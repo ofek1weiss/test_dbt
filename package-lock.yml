@@ -5,7 +5,8 @@ packages:
     version: 0.8.5
   - package: dbt-labs/audit_helper
     version: 0.9.0
-  - local: ../dbt-data-reliability
+  - package: elementary-data/elementary
+    version: 0.16.0
   - package: calogica/dbt_date
     version: 0.7.2
-sha1_hash: af90b0306562b976e278bbf66e6599cd623c8eb9
+sha1_hash: 7318ad4186fcf22a468022ec020bf335fcb14eca
