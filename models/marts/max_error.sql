@@ -10,7 +10,7 @@ with dates as (
 select * from (
 SELECT
     date,
-    123 as value
+    case when date > current_date - interval '2 days' then 10000 else 1 end as value
     from dates
 ) t1
 cross join (
