@@ -110,6 +110,15 @@ models:
           time_bucket:
             period: day
             count: 1
+  
+      - elementary.collect_metrics:
+          timestamp_column: date
+          cloud_monitored: true
+          metrics:
+            - name: row_count_by_client
+              type: row_count
+          dimensions:
+            - client
   - name: max_error
     tests:
       - elementary.column_anomalies:
@@ -127,3 +136,21 @@ models:
             period: day
             count: 1
           fail_on_zero: true
+      
+      - elementary.collect_metrics:
+          timestamp_column: date
+          cloud_monitored: true
+          metrics:
+            - name: value_max
+              type: max
+              columns: [value]
+      
+      - elementary.collect_metrics:
+          timestamp_column: date
+          cloud_monitored: true
+          metrics:
+            - name: max_by_client
+              type: max
+              columns: [value]
+          dimensions:
+            - client
