@@ -1,6 +1,16 @@
 version: 2
 
 models:
+  - name: all_dates
+    tests:
+      - elementary.collect_metrics:
+          timestamp_column: date_day
+          cloud_monitored: true
+          metrics:
+            - name: row_count
+              type: row_count
+          days_back: 30
+
   - name: normal
     meta:
       owner: "ofek,weiss"

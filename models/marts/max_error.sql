@@ -1,3 +1,5 @@
+{{ config(materialized='materialized_view') }}
+
 with dates as (
     select 
         date_hour::timestamp + interval '12 hours' as date

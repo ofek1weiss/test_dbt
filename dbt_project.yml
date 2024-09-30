@@ -47,3 +47,12 @@ vars:
 
 flags:
   source_freshness_run_project_hooks: true
+  require_explicit_package_overrides_for_builtin_materializations: false
+
+
+# data_tests:
+#   +meta:
+#     alert_fields: 
+#       - "description"
+#       - "result_message"
+#       - "test_results_sample"

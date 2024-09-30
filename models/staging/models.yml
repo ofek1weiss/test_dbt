@@ -2,6 +2,10 @@ version: 2
 
 models:
   - name: stg_customers
+    meta:
+      subscribers:
+        - me
+        - not_me
     config:
       tags:
         - critical-tag
@@ -17,6 +21,11 @@ models:
         description: Full name of customer.
         tests:
           - failing_test:
+              meta:
+                subscribers:
+                  - me2
+                  - not_me
+                  - not_me2
               tags: [blabla]
               config:
                 store_failures: true
