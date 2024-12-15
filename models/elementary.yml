@@ -1,0 +1,15 @@
+version: 2
+models:
+  - name: all_dates
+    columns:
+      - name: date_day
+        tests:
+          - accepted_values:
+              values:
+                - a
+                - b
+              config:
+                severity: error
+              meta:
+                description: 'The date_day column in the all_dates table should be
+                  one of the following values: a, b'
