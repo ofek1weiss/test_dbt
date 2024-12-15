@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: all_dates
+    columns:
+      - name: date_day
+        tests:
+          - elementary.freshness_anomalies:
+              date_column: 'date' # date
+              sub1:
+                a: 0
+                b: ''
+              sub2:
+                a: 0
+                b: ''
+              config:
+                tags:
+                  - critical-tag
+                  - critical-tag2
+              meta:
+                owner:
+                  - ofek@elementary-data.com
+                description: desc
