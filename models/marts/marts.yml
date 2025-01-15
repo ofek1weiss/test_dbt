@@ -2,6 +2,11 @@ version: 2
 
 models:
   - name: all_dates
+    meta:
+      owner: 
+        - "ofek3"
+      subscribers:
+        - "ofek4"
     tests:
       - elementary.collect_metrics:
           timestamp_column: date_day
