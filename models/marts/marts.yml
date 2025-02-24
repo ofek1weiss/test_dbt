@@ -3,7 +3,7 @@ version: 2
 models:
   - name: all_dates
     meta:
-      owner: 
+      owner:
         - "ofek3"
       subscribers:
         - "ofek4"
@@ -48,6 +48,10 @@ models:
         tests:
           - average_dollars_spent_greater_than_one:
               group_by_column: customer_id
+          - dbt_utils.not_accepted_values:
+              values:
+                - Barcelona
+                - New York
     tests:
       - elementary.volume_anomalies:
           time_bucket:
@@ -60,7 +64,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
       - elementary.volume_anomalies:
           time_bucket:
             period: day
@@ -75,7 +80,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -125,7 +131,7 @@ models:
           time_bucket:
             period: day
             count: 1
-  
+
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
@@ -151,7 +157,7 @@ models:
             period: day
             count: 1
           fail_on_zero: true
-      
+
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
@@ -159,7 +165,6 @@ models:
             - name: value_max
               type: max
               columns: [value]
-      
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
