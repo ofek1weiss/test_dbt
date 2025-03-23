@@ -33,10 +33,11 @@ models:
   - name: stg_payments
     description: Payments.
     config:
-      tags:
-        - critical-tag2
       owner: data-team
 
+      tags:
+        - blabla
+        - critical-ta
   - name: stg_orders
     description: Orders.
     columns:
