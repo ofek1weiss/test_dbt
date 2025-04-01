@@ -75,7 +75,9 @@ models:
           config:
             tags:
               - elementary-tests
+              - no-slack
           meta:
             owner:
               - ofek@elementary-data.com
             description: The data in the table should be updated at least up to yesterday
+            channel: 123

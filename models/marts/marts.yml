@@ -3,6 +3,7 @@ version: 2
 models:
   - name: all_dates
     meta:
+      team: "data"
       owner: 
         - "ofek3"
       subscribers:
@@ -18,6 +19,7 @@ models:
 
   - name: normal
     meta:
+      team: "data"
       owner: "ofek,weiss"
     tests:
       - elementary.schema_changes_from_baseline
@@ -26,6 +28,7 @@ models:
       - name: value
         tests:
           - elementary.column_anomalies:
+              description: "This is a test description"
               column_anomalies:
                 - max
                 - min
@@ -43,6 +46,8 @@ models:
                 spike_failure_percent_threshold: 10
 
   - name: fct_orders
+    meta:
+      team: "sales"
     columns:
       - name: amount
         tests:
@@ -169,3 +174,9 @@ models:
               columns: [value]
           dimensions:
             - client
+  - name: failing_model
+    meta:
+      owner: "ofek@elementary-data.com"
+      channel: "ofek-test2"
+      subscribers:
+        - "@Ofek Aharon Weiss"
