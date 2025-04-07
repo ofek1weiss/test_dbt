@@ -4,7 +4,7 @@ models:
   - name: all_dates
     meta:
       team: "data"
-      owner: 
+      owner:
         - "ofek3"
       subscribers:
         - "ofek4"
@@ -17,6 +17,10 @@ models:
               type: row_count
           days_back: 30
 
+      - dbt_utils.expression_is_true:
+          expression: col_a + col_b = total
+          config:
+            severity: error
   - name: normal
     meta:
       team: "data"
@@ -65,7 +69,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
       - elementary.volume_anomalies:
           time_bucket:
             period: day
@@ -80,7 +85,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table
+              by comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -130,7 +136,7 @@ models:
           time_bucket:
             period: day
             count: 1
-  
+
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
@@ -156,7 +162,7 @@ models:
             period: day
             count: 1
           fail_on_zero: true
-      
+
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
@@ -164,7 +170,6 @@ models:
             - name: value_max
               type: max
               columns: [value]
-      
       - elementary.collect_metrics:
           timestamp_column: date
           cloud_monitored: true
