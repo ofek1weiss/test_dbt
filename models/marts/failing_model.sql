@@ -1,2 +1,3 @@
-select 1 / 0
+select *
 from {{ ref('all_dates') }}
+limit 1
