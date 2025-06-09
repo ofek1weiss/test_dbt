@@ -28,7 +28,6 @@ models:
       - name: value
         tests:
           - elementary.column_anomalies:
-              description: "This is a test description"
               column_anomalies:
                 - max
                 - min
@@ -53,6 +52,7 @@ models:
         tests:
           - average_dollars_spent_greater_than_one:
               group_by_column: customer_id
+          - failing_test
     tests:
       - elementary.volume_anomalies:
           time_bucket:
