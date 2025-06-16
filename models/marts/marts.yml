@@ -27,6 +27,9 @@ models:
           meta:
             owner:
               - ofek
+    config:
+      tags:
+        - blabla
   - name: normal
     meta:
       team: "data"
@@ -102,6 +105,9 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+    config:
+      tags:
+        - critical-tag2
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
