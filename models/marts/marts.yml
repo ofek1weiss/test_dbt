@@ -27,6 +27,9 @@ models:
           meta:
             owner:
               - ofek
+    config:
+      tags:
+        - blabla
   - name: normal
     meta:
       team: "data"
