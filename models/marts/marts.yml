@@ -6,6 +6,7 @@ models:
       team: "data"
       owner:
         - "ofek3"
+        - "ofek5"
       subscribers:
         - "ofek4"
     tests:
@@ -26,7 +27,7 @@ models:
             severity: error
           meta:
             owner:
-              - ofek
+      owner: "ofek,weiss,ofek5"
   - name: normal
     meta:
       team: "data"
@@ -39,7 +40,8 @@ models:
         tests:
           - elementary.column_anomalies:
               column_anomalies:
-                - max
+      team: "sales"
+      owner: "ofek5"
                 - min
               timestamp_column: "date_day"
               training_period:
@@ -134,7 +136,9 @@ models:
           dimensions:
             - client
           training_period:
-            period: day
+      owner: 
+        - "ofek@elementary-data.com"
+        - "ofek5"
             count: 14
           detection_period:
             period: day
