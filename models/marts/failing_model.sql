@@ -1,2 +1,2 @@
-select 1 / 0
+select 1 as result
 from {{ ref('all_dates') }}
