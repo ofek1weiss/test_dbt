@@ -1,7 +1,16 @@
 version: 2
 
+groups:
+  - name: group1
+    owner:
+      name: "Ofek Aharon Weiss"
+      email: "ofek@elementary-data.com"
+      
+
 models:
   - name: all_dates
+    config:
+      group: group1
     meta:
       team: "data"
       owner:
@@ -28,6 +37,8 @@ models:
             owner:
               - ofek
   - name: normal
+    config:
+      group: group1
     meta:
       team: "data"
       owner: "ofek,weiss"
@@ -36,6 +47,9 @@ models:
     columns:
       - name: this_is_fake
       - name: value
+        meta:
+          tags:
+            - "column_tag"
         tests:
           - elementary.column_anomalies:
               column_anomalies:
@@ -102,6 +116,8 @@ models:
           - dbt_utils.cardinality_equality:
               field: customer_id
               to: ref('stg_customers')
+              config:
+                severity: warn
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
