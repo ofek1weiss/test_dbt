@@ -36,6 +36,9 @@ models:
           meta:
             owner:
               - ofek
+    config:
+      tags:
+        - blabla
   - name: normal
     config:
       group: group1
