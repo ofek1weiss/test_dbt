@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: all_dates
+    columns:
+      - name: date_day
+        tests:
+          - dbt_utils.at_least_one:
+              group_by_columns: # Optional, Columns to group by before executing the test
+                - group_id
