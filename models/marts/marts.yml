@@ -8,6 +8,15 @@ groups:
       
 
 models:
+  - name: versioned
+    latest_version: 1
+    versions:
+      - v: 1
+        config:
+          alias: versioned
+  - name: schema_changer
+    tests:
+      - elementary.schema_changes
   - name: all_dates
     config:
       group: group1
@@ -118,6 +127,7 @@ models:
               to: ref('stg_customers')
               config:
                 severity: warn
+                error_if: ">100"
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
