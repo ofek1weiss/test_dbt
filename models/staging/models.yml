@@ -7,6 +7,7 @@ models:
         - me
         - not_me
     config:
+      materialized: ephemeral
       tags:
         - critical-tag
     description: Customers.

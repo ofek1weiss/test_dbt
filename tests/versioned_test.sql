@@ -1,7 +1,7 @@
 {{ config(
     override_primary_test_model_id="model.test_dbt.versioned",
+    description="Versioned test",
     meta={
-        "description": "Versioned test",
         "tags": ["test_dbt"],
     }
 ) }}

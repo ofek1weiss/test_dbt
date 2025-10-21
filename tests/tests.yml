@@ -1,0 +1,3 @@
+data_tests:
+  - name: versioned_test
+    description: Versioned test
