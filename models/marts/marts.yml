@@ -5,7 +5,7 @@ groups:
     owner:
       name: "Ofek Aharon Weiss"
       email: "ofek@elementary-data.com"
-      
+
 
 models:
   - name: versioned
@@ -100,8 +100,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table
-              by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table by
+              comparing the row count of each 1 days period to the last 14 days
       - elementary.volume_anomalies:
           time_bucket:
             period: day
@@ -116,8 +116,8 @@ models:
           config:
             severity: error
           meta:
-            description: Checking for anomalies in the size and growth of a table
-              by comparing the row count of each 1 days period to the last 14 days
+            description: Checking for anomalies in the size and growth of a table by
+              comparing the row count of each 1 days period to the last 14 days
   - name: dim_customers
     columns:
       - name: customer_id
@@ -130,6 +130,39 @@ models:
               config:
                 severity: warn
                 error_if: ">100"
+    data_tests:
+      - elementary.all_columns_anomalies:
+          column_anomalies: # Optional, A list of column monitors for anomaly detection.
+            - null_count
+            - null_percent
+            - min_length
+            - max_length
+            - average_length
+            - missing_count
+            - missing_percent
+            - min
+            - max
+            - average
+            - zero_count
+            - zero_percent
+            - standard_deviation
+            - variance
+            - sum
+          exclude_prefix: id_
+          exclude_regexp: .*SDC$
+          time_bucket: # Optional, The period for time bucketing.
+            period: day
+            count: 1
+          timestamp_column: created_at
+          anomaly_sensitivity: 3
+          training_period: # Optional, The period for model training.
+            period: day # Optional
+            count: 14 # Optional
+          detection_period: # Optional, The period for anomaly detection.
+            period: day # Optional
+            count: 2 # Optional
+          anomaly_direction: both
+          severity: error
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
