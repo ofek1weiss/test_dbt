@@ -130,6 +130,10 @@ models:
               config:
                 severity: warn
                 error_if: ">100"
+      - name: lifetime_value
+        tests:
+          - failing_test
+  
   - name: test_table
     tests:
       - elementary.freshness_anomalies:
@@ -154,6 +158,20 @@ models:
           time_bucket:
             period: day
             count: 1
+  - name: dimension_no_data
+    tests:
+      - elementary.collect_metrics:
+          timestamp_column: date
+          cloud_monitored: true
+          metrics:
+            - name: row_count_by_client
+              type: row_count
+          dimensions:
+            - client
+          time_bucket:
+            period: day
+            count: 1
+          days_back: 1
   - name: dimension_error
     tests:
       - elementary.dimension_anomalies:

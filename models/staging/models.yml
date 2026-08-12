@@ -37,6 +37,10 @@ models:
       tags:
         - critical-tag2
       owner: data-team
+    columns:
+      - name: amount
+        tests:
+          - failing_test
 
   - name: stg_orders
     description: Orders.
