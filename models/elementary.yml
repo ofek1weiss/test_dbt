@@ -1,0 +1,14 @@
+version: 2
+models:
+  - name: all_dates
+    columns:
+      - name: date_day
+        tests:
+          - elementary.freshness_anomalies:
+              date_column: date
+              sub1:
+                a: 0
+                b: ''
+              sub2:
+                a: 0
+                b: ''
